@@ -1,0 +1,47 @@
+﻿@page
+@model YoutubeCommentAnalysis.Pages.IndexModel
+@{
+    ViewData["Title"] = "YouTube Yorum Analiz";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/sites.css">
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <header>
+        <h1>YouTube Yorum Analiz Uygulaması</h1>
+    </header>
+    <main>
+        <section id="login">
+            <h2>Kullanıcı Girişi</h2>
+            <form method="post" asp-page-handler="Login">
+                <input type="email" asp-for="Email" placeholder="E-posta" required>
+                <input type="password" asp-for="Password" placeholder="Şifre" required>
+                <button type="submit">Giriş Yap</button>
+            </form>
+        </section>
+
+        <section id="analysis">
+            <h2>Yorum Analizi</h2>
+            <input type="text" id="videoId" placeholder="YouTube Video ID" required>
+            <button id="fetchComments">Yorumları Çek</button>
+            <div id="commentsList"></div>
+            <div id="analysisResults"></div>
+        </section>
+    </main>
+    <footer>
+        <p>Telif Hakkı &copy; 2024</p>
+    </footer>
+
+    <script>
+        document.getElementById("fetchComments").addEventListener("click", function () {
+            // Yorumları çekmek için JavaScript kodu
+        });
+    </script>
+</body>
+</html>
