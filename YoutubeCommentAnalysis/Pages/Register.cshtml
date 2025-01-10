@@ -1,0 +1,43 @@
+﻿@page
+@model YoutubeCommentAnalysis.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/sites.css">
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <header>
+        <h1>Kayıt Ol</h1>
+    </header>
+    <main>
+        <section id="register">
+            <form method="post">
+                <label for="email">E-posta</label>
+                <input type="email" asp-for="Email" id="email" placeholder="E-posta" required />
+
+                <label for="password">Şifre</label>
+                <input type="password" asp-for="Password" id="password" placeholder="Şifre" required />
+
+                <label for="confirmPassword">Şifre (Tekrar)</label>
+                <input type="password" asp-for="ConfirmPassword" id="confirmPassword" placeholder="Şifre (Tekrar)" required />
+
+                <button type="submit">Kayıt Ol</button>
+            </form>
+            @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
+            {
+                <p style="color: red;">@ViewData["ErrorMessage"]</p>
+            }
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 YouTube Comment Analysis</p>
+    </footer>
+</body>
+</html>

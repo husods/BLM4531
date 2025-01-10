@@ -1,0 +1,43 @@
+﻿@page
+@model YoutubeCommentAnalysis.Pages.ContactModel
+@{
+    ViewData["Title"] = "İletişim";
+}
+
+<h2>İletişim</h2>
+
+<div id="contactForm" class="container mt-4">
+    <!-- Form Gönderildiğinde Mesaj Gösterimi -->
+    @if (Model.IsSubmitted)
+    {
+        <div class="alert alert-success mt-4">
+            Mesajınız başarıyla gönderildi. Teşekkür ederiz!
+        </div>
+    }
+    else
+    {
+        <!-- Form: Kullanıcıdan Ad, E-posta ve Mesaj Almak için -->
+        <form method="post" class="shadow p-4 rounded bg-white">
+            <div class="mb-3">
+                <label for="name" class="form-label">Adınız</label>
+                <input type="text" id="name" name="Name" class="form-control" placeholder="Adınızı giriniz" required />
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">E-posta</label>
+                <input type="email" id="email" name="Email" class="form-control" placeholder="E-posta adresinizi giriniz" required />
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Mesajınız</label>
+                <textarea id="message" name="Message" class="form-control" rows="5" placeholder="Mesajınızı yazınız" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Gönder</button>
+        </form>
+    }
+
+    <!-- İletişim Bilgileri -->
+    <div class="contact-info mt-5 p-4 bg-light border rounded">
+        <h4>İletişim Bilgileri</h4>
+        <p><strong>Adres:</strong> Ankara Üniversitesi</p>
+        <p><strong>E-posta:</strong> <a href="mailto:huseynmirza@gmail.com">huseynmirza@gmail.com</a></p>
+    </div>
+</div>

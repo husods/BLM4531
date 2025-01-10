@@ -1,140 +1,615 @@
-﻿/* Genel ayarlar */
-* {
+﻿/* Genel Stil Ayarları 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    background-color: #f4f4f9;
-    color: #333;
+    min-height: 100vh; /* Tüm ekranı kapla 
 }
 
-/* Başlık */
 header {
     background-color: #333;
     color: #fff;
-    padding: 1em;
+    padding: 10px;
     text-align: center;
 }
 
     header h1 {
-        font-size: 2em;
         margin: 0;
     }
 
-/* Ana İçerik */
-main {
-    flex: 1;
-    padding: 2em;
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
+.header-options {
+    text-align: right;
+    margin-top: -30px;
 }
 
-/* Kullanıcı Giriş Formu */
+    .header-options a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+    }
+
+header a:hover {
+    text-decoration: underline;
+}*/
+
+/* Ana Sayfa (Index Sayfası) Stil */
+/* Genel Stiller */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('/path-to-your-background-image.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff; /* Beyaz metin */
+}
+
+/* Header */
+header {
+    background-color: #333 !important; /* Footer ile aynı arka plan rengi */
+    color: white !important; /* Metin rengi */
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5; /* İsteğe bağlı, footer ile uyumlu bir alt çizgi */
+}
+
+    header h1 {
+        margin: 0;
+        color: white !important; /* Metin rengi */
+    }
+
+    header a {
+        color: white !important; /* Bağlantı rengi */
+        text-decoration: none;
+    }
+
+        header a:hover {
+            text-decoration: underline; /* Hover sırasında alt çizgi */
+            color: #e5e5e5; /* İsteğe bağlı daha açık bir renk hover efekti için */
+        }
+.navbar-brand {
+    color: black !important; /* Yazıyı siyah yapar */
+    font-weight: bold; /* İsteğe bağlı, yazıyı kalın yapar */
+    text-decoration: none; /* Varsayılan alt çizgiyi kaldırır */
+}
+
+    .navbar-brand:hover {
+        color: #333; /* Hover sırasında daha koyu siyah ton */
+    }
+
+
+
+
+/* Ana İçerik */
+main.container {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6); /* Şeffaf siyah arka plan */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+}
+
+/* Welcome Bölümü */
+#welcome p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #f8f9fa; /* Hafif beyaz metin */
+}
+
+/* Index Sayfasındaki Buton için Stil */
+#welcome .btn {
+    background-color: #4CAF50; /* Yeşil arka plan */
+    color: white; /* Beyaz metin */
+    border: none; /* Kenarsız */
+    border-radius: 5px; /* Hafif yuvarlak köşeler */
+    padding: 15px 30px; /* İç boşluk */
+    font-size: 1.2rem; /* Yazı boyutu */
+    cursor: pointer; /* İşaretçi simgesi */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Yumuşak geçiş */
+}
+
+    #welcome .btn:hover {
+        background-color: #45a049; /* Daha koyu yeşil hover rengi */
+        transform: scale(1.05); /* Hafif büyüme efekti */
+    }
+
+    #welcome .btn:active {
+        background-color: #3e8e41; /* Daha koyu yeşil tıklama rengi */
+        transform: scale(1); /* Normal boyuta dönüş */
+    }
+
+
+
+/* Login Sayfası (Login Page) Stil */
 #login {
-    background-color: #fff;
-    padding: 1.5em;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    margin: 0 auto;
+    width: 350px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff; /* Beyaz arka plan */
+    border-radius: 10px; /* Yuvarlatılmış köşeler */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    text-align: center;
 }
 
     #login h2 {
-        font-size: 1.5em;
-        margin-bottom: 1em;
-        color: #333;
-    }
-
-    #login form {
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
+        font-size: 1.8rem;
+        color: #333; /* Koyu metin rengi */
+        margin-bottom: 20px;
     }
 
     #login input {
-        padding: 0.8em;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 1em;
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #ddd; /* İnce kenar çizgisi */
+        border-radius: 5px; /* Hafif yuvarlaklık */
+        font-size: 1rem;
+        box-sizing: border-box;
     }
 
+        #login input:focus {
+            border-color: #007BFF; /* Odaklanıldığında mavi kenar */
+            outline: none; /* Varsayılan odak stilini kaldır */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Hafif mavi parlama */
+        }
+
+    /* Login Sayfasındaki Buton için Stil */
     #login button {
-        padding: 0.8em;
-        background-color: #28a745;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        font-size: 1em;
-        cursor: pointer;
-        transition: background-color 0.3s;
+        background-color: #4CAF50; /* Yeşil arka plan */
+        color: white; /* Beyaz metin */
+        border: none; /* Kenarsız */
+        border-radius: 5px; /* Hafif yuvarlak köşeler */
+        padding: 12px; /* İç boşluk */
+        font-size: 1rem; /* Yazı boyutu */
+        cursor: pointer; /* İşaretçi simgesi */
+        transition: background-color 0.3s ease, transform 0.2s ease; /* Yumuşak geçiş */
     }
 
         #login button:hover {
-            background-color: #218838;
+            background-color: #45a049; /* Daha koyu yeşil hover rengi */
+            transform: scale(1.05); /* Hafif büyüme efekti */
         }
 
-/* Yorum Analiz Bölümü */
+        #login button:active {
+            background-color: #3e8e41; /* Daha koyu yeşil tıklama rengi */
+            transform: scale(1); /* Normal boyuta dönüş */
+        }
+
+
+    #login #register-link {
+        margin-top: 20px;
+    }
+
+        #login #register-link p {
+            font-size: 0.9rem;
+            color: #333; /* Koyu gri metin */
+        }
+
+        #login #register-link a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            #login #register-link a:hover {
+                text-decoration: underline; /* Hover sırasında alt çizgi */
+            }
+
+
+/* Ana İçerik ve Minimum Yükseklik */
+html, body {
+    height: 100%; /* Tüm sayfa boyunu kapsar */
+}
+
+main {
+    flex: 1; /* Ana içeriğin esnemesini sağlar */
+    padding: 20px;
+    text-align: center;
+}
+
+
+/* Register Sayfası (Register Page) Stil */
+#register {
+    max-width: 400px; /* İçerik genişliği */
+    margin: 50px auto; /* Ortalanma */
+    padding: 20px; /* İç boşluk */
+    background-color: #ffffff; /* Beyaz arka plan */
+    border-radius: 10px; /* Yuvarlak köşeler */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+}
+
+    #register h1 {
+        text-align: center; /* Ortala */
+        font-size: 2rem; /* Büyük başlık */
+        color: #333; /* Koyu renk */
+        margin-bottom: 20px; /* Alt boşluk */
+    }
+
+    #register form {
+        display: flex;
+        flex-direction: column; /* Dikey sıralama */
+        gap: 15px; /* Elemanlar arasında boşluk */
+    }
+
+    #register label {
+        font-size: 1rem; /* Standart yazı boyutu */
+        color: #555; /* Orta koyulukta metin */
+    }
+
+    #register input {
+        width: 100%; /* Tam genişlik */
+        padding: 10px; /* İç boşluk */
+        font-size: 1rem; /* Standart yazı boyutu */
+        border: 1px solid #ddd; /* İnce kenar */
+        border-radius: 5px; /* Hafif yuvarlak kenarlar */
+        box-sizing: border-box; /* Dolguyu hesaba kat */
+    }
+
+        #register input:focus {
+            border-color: #007BFF; /* Mavi kenar */
+            outline: none; /* Varsayılan odak stilini kaldır */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Hafif mavi parlama */
+        }
+
+    #register button {
+        width: 100%; /* Tam genişlik */
+        padding: 12px; /* İç boşluk */
+        font-size: 1rem; /* Standart yazı boyutu */
+        background-color: #4CAF50; /* Yeşil düğme */
+        color: white; /* Beyaz yazı */
+        border: none; /* Kenarsız */
+        border-radius: 5px; /* Hafif yuvarlak köşeler */
+        cursor: pointer; /* İşaretçi simgesi */
+        transition: background-color 0.3s ease, transform 0.2s ease; /* Animasyon */
+    }
+
+        #register button:hover {
+            background-color: #45a049; /* Daha koyu yeşil hover */
+            transform: scale(1.05); /* Hafif büyüme */
+        }
+
+        #register button:active {
+            background-color: #39843a; /* Daha koyu yeşil tıklama */
+            transform: scale(1); /* Normal boyuta dönüş */
+        }
+
+    #register p {
+        font-size: 0.9rem; /* Daha küçük yazı */
+        text-align: center; /* Ortala */
+        color: red; /* Kırmızı hata mesajı */
+        margin-top: 10px; /* Üst boşluk */
+    }
+
+footer {
+    text-align: center; /* Ortala */
+    padding: 10px; /* İç boşluk */
+    background-color: #f8f9fa; /* Hafif gri arka plan */
+    color: #333; /* Koyu metin */
+    font-size: 0.9rem; /* Küçük yazı boyutu */
+    margin-top: 50px; /* Üst boşluk */
+    border-top: 1px solid #ddd; /* Üst çizgi */
+}
+
+
+/* Export Sayfası (Export Page) Stil */
+#exportSection {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff; /* Beyaz arka plan */
+    border-radius: 10px; /* Yuvarlak köşeler */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+}
+
+    #exportSection h2 {
+        font-size: 1.8rem;
+        color: #333; /* Koyu başlık rengi */
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    #exportSection label {
+        font-size: 1rem;
+        margin: 10px 0 5px;
+        color: #555; /* Daha açık bir metin rengi */
+    }
+
+    /* Alan Grupları (Fieldset) */
+    #exportSection fieldset {
+        border: 1px solid #ddd; /* İnce kenar çizgisi */
+        padding: 15px;
+        border-radius: 5px; /* Hafif yuvarlaklık */
+        margin-bottom: 15px;
+        display: flex; /* Flex düzen */
+        flex-wrap: wrap; /* Alt alta taşma durumunda sar */
+        gap: 15px; /* Elemanlar arası boşluk */
+    }
+
+        #exportSection fieldset legend {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333; /* Koyu renk */
+            padding: 0 10px;
+        }
+
+        #exportSection fieldset label {
+            display: flex;
+            align-items: center; /* Checkbox ve yazıyı ortala */
+            gap: 5px; /* Checkbox ile yazı arasında boşluk */
+        }
+
+    /* Giriş Alanları */
+    #exportSection input[type="text"],
+    #exportSection input[type="date"] {
+        width: calc(100% - 20px); /* Tam genişlik, kenarlardan biraz boşluk bırak */
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ddd; /* İnce kenar çizgisi */
+        border-radius: 5px; /* Hafif yuvarlaklık */
+        margin-bottom: 15px;
+        box-sizing: border-box; /* Kenar dolgularını hesaba kat */
+    }
+
+    #exportSection input:focus {
+        border-color: #4CAF50; /* Yeşil kenar */
+        outline: none; /* Varsayılan odak stilini kaldır */
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Hafif yeşil parlama */
+    }
+
+    /* Genel Checkbox Ayarları */
+    #exportSection fieldset label {
+        display: flex;
+        align-items: center; /* Checkbox ile yazıyı ortala */
+        gap: 5px; /* Checkbox ile yazı arasında boşluk */
+    }
+
+    /* Checkbox'ları Ortala */
+    #exportSection fieldset {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Checkboxları yatayda ortala */
+        gap: 15px;
+    }
+
+/* Anahtar Kelime Bölümü için Ortala ve Kare Checkbox */
+#keywordInputDiv {
+    display: none;
+    margin-top: 10px;
+    text-align: center; /* Tüm içeriği ortala */
+}
+
+    #keywordInputDiv label {
+        display: flex;
+        align-items: center; /* Checkbox ile yazıyı ortala */
+        justify-content: center; /* Checkbox ile yazıyı yatayda ortala */
+        gap: 5px;
+    }
+
+    #keywordInputDiv input[type="checkbox"] {
+        width: 20px; /* Kare boyut */
+        height: 20px; /* Kare boyut */
+    }
+
+/* Tüm Checkboxlar için Kare Şekil */
+#exportSection input[type="checkbox"] {
+    width: 20px; /* Kare boyut */
+    height: 20px; /* Kare boyut */
+}
+
+
+    /* Butonlar */
+    #exportSection button {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        background-color: #4CAF50; /* Yeşil buton */
+        color: white; /* Beyaz metin */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+        #exportSection button:hover {
+            background-color: #45a049; /* Daha koyu yeşil hover */
+            transform: scale(1.05); /* Hafif büyüme */
+        }
+
+        #exportSection button:active {
+            background-color: #388e3c; /* Tıklama sırasında koyu yeşil */
+            transform: scale(1); /* Normal boyuta geri dönüş */
+        }
+
+/* Anahtar Kelime Bölümü */
+#keywordInputDiv {
+    display: none; /* Varsayılan olarak gizli */
+    margin-top: 10px;
+}
+
+    #keywordInputDiv label {
+        font-size: 1rem;
+        color: #555;
+    }
+
+/* Alt Metinler */
+#exportSection p {
+    font-size: 0.9rem;
+    color: #666; /* Daha açık gri */
+    text-align: center;
+}
+
+
+
+/* Yorum analizi formu */
 #analysis {
-    background-color: #fff;
-    padding: 1.5em;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
 }
 
     #analysis h2 {
-        font-size: 1.5em;
-        margin-bottom: 1em;
+        text-align: center;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
         color: #333;
     }
 
-    #analysis input {
-        padding: 0.8em;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 1em;
-        width: 100%;
-        margin-bottom: 1em;
+    #analysis form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
 
+    /* Video ID alanı */
+    #analysis input[type="text"] {
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 100%;
+    }
+
+    /* Yorumları Çek Butonu */
     #analysis button {
-        padding: 0.8em;
-        background-color: #007bff;
-        color: #fff;
+        padding: 10px 15px;
+        background-color: #4CAF50;
+        color: white;
         border: none;
         border-radius: 4px;
-        font-size: 1em;
         cursor: pointer;
+        font-size: 1rem;
         transition: background-color 0.3s;
     }
 
         #analysis button:hover {
-            background-color: #0056b3;
+            background-color: #45a049;
         }
 
-/* Yorum ve Analiz Sonuçları */
-#commentsList, #analysisResults {
-    margin-top: 1em;
-    padding: 1em;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-    min-height: 100px;
+/* Yorumlar Listesi */
+#commentsList {
+    margin-top: 30px;
 }
 
-/* Altbilgi */
-footer {
-    text-align: center;
-    padding: 1em;
-    background-color: #333;
-    color: #fff;
-    font-size: 0.9em;
+    #commentsList ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    #commentsList li {
+        background-color: #f9f9f9;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        font-size: 1rem;
+    }
+
+        #commentsList li:nth-child(even) {
+            background-color: #f1f1f1;
+        }
+
+
+.footer[b-ght5g3mdak] {
+    /* Pozisyon ve Flex Düzeni Uyumu */
+    position: relative !important; /* Absolute yerine relative */
+    bottom: auto !important; /* Alt konumlandırmayı kaldırır */
+    margin-top: auto !important; /* Flex düzeninde alt kısma itilmesini sağlar */
+    flex-shrink: 0 !important; /* Sıkışmayı engeller */
+    width: 100% !important; /* Tam genişlik */
+    /* Tasarım Özellikleri */
+    background-color: #333 !important; /* Arka plan rengi */
+    color: white !important; /* Metin rengi */
+    text-align: center !important; /* İçeriği ortalar */
+    padding: 10px !important; /* İç boşluk */
+    border-top: 1px solid #e5e5e5 !important; /* Üst kenar çizgisi */
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05) !important; /* Hafif gölge */
+    line-height: 60px !important; /* Satır yüksekliği */
+    white-space: normal !important; /* Satırların taşmasını engeller */
 }
+
+/*Contact sayfası*/
+/* Adınız ve E-posta Alanlarının Başlıkları */
+#contactForm form label {
+    color: black !important; /* Siyah renk */
+    font-weight: bold; /* Kalın yazı */
+}
+
+/* İletişim Formu Başlığı (h2) */
+#contactForm .h2, h2 {
+    font-size: 2rem !important; /* Esnek yerine sabit bir boyut */
+    color: black !important;
+}
+
+
+/* İletişim Bilgileri Başlığı (h4) */
+#contactForm .contact-info h4 {
+    color: black !important; /* Siyah renk */
+    margin-bottom: 15px; /* Alt boşluk */
+    font-weight: bold; /* Kalın yazı */
+}
+
+/* İletişim Bilgileri İçeriği (p) */
+#contactForm .contact-info p {
+    color: black !important; /* Siyah renk */
+    margin: 5px 0; /* Üst ve alt boşluk */
+}
+
+/* İletişim Bilgileri İçindeki Linkler */
+#contactForm .contact-info a {
+    color: #007BFF !important; /* Mavi renk */
+    text-decoration: none !important; /* Alt çizgi kaldır */
+}
+
+    #contactForm .contact-info a:hover {
+        text-decoration: underline !important; /* Hover sırasında alt çizgi */
+    }
+/* Gönder Butonu için Stil */
+#contactForm .btn {
+    background-color: #4CAF50; /* Yeşil arka plan */
+    color: white; /* Beyaz metin */
+    border: none; /* Kenarsız */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Yumuşak geçiş */
+}
+
+    #contactForm .btn:hover {
+        background-color: #45a049; /* Daha koyu yeşil hover rengi */
+        transform: scale(1.05); /* Hafif büyüme efekti */
+    }
+
+    #contactForm .btn:active {
+        background-color: #3e8e41; /* Daha koyu yeşil tıklama rengi */
+        transform: scale(1); /* Normal boyuta dönüş */
+    }
+
+
+.navbar .dropdown-menu {
+    background-color: #333; /* Menünün arka plan rengi */
+    border: none; /* Kenarlıkları kaldır */
+}
+
+    .navbar .dropdown-menu .dropdown-item {
+        color: #fff; /* Menü öğesi metin rengi */
+    }
+
+        .navbar .dropdown-menu .dropdown-item:hover {
+            background-color: #4CAF50; /* Hover rengi */
+            color: #fff;
+        }
+
+
+
+
+
+
+

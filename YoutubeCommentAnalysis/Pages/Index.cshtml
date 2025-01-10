@@ -1,7 +1,7 @@
 ﻿@page
 @model YoutubeCommentAnalysis.Pages.IndexModel
 @{
-    ViewData["Title"] = "YouTube Yorum Analiz";
+    ViewData["Title"] = "YouTube Yorum Analiz - Giriş";
 }
 
 <!DOCTYPE html>
@@ -9,39 +9,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="~/css/sites.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
     <title>@ViewData["Title"]</title>
 </head>
 <body>
     <header>
-        <h1>YouTube Yorum Analiz Uygulaması</h1>
+        <h1 class="text-center mt-4">Welcome! Dive Deeper into Your YouTube Videos</h1>
     </header>
-    <main>
-        <section id="login">
-            <h2>Kullanıcı Girişi</h2>
-            <form method="post" asp-page-handler="Login">
-                <input type="email" asp-for="Email" placeholder="E-posta" required>
-                <input type="password" asp-for="Password" placeholder="Şifre" required>
-                <button type="submit">Giriş Yap</button>
-            </form>
-        </section>
-
-        <section id="analysis">
-            <h2>Yorum Analizi</h2>
-            <input type="text" id="videoId" placeholder="YouTube Video ID" required>
-            <button id="fetchComments">Yorumları Çek</button>
-            <div id="commentsList"></div>
-            <div id="analysisResults"></div>
+    <main class="container mt-5">
+        <section id="welcome" class="text-center">
+            <p>
+                Gain valuable insights by deeply analyzing the comments on your YouTube videos.
+                With our user-friendly tools, easily discover your audience's interests, thoughts, and comment trends.
+            </p>
+            <button onclick="window.location.href='@Url.Page("/Login")'" class="btn btn-primary btn-lg mt-3">Get Started by Logging In</button>
         </section>
     </main>
-    <footer>
-        <p>Telif Hakkı &copy; 2024</p>
-    </footer>
-
-    <script>
-        document.getElementById("fetchComments").addEventListener("click", function () {
-            // Yorumları çekmek için JavaScript kodu
-        });
-    </script>
 </body>
 </html>

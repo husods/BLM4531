@@ -1,0 +1,94 @@
+﻿@page
+@model YoutubeCommentAnalysis.Pages.ExportModel
+@{
+    ViewData["Title"] = "Yorumları Dışa Aktar";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/sites.css">
+    <title>@ViewData["Title"]</title>
+    <script>
+        // Anahtar kelime seçim durumuna göre textbox'ı göster/gizle
+        function toggleKeywordInput() {
+            const yesCheckbox = document.getElementById('useKeywordYes');
+            const keywordInputDiv = document.getElementById('keywordInputDiv');
+            keywordInputDiv.style.display = yesCheckbox.checked ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+    <main>
+        <section id="exportSection">
+            <h2>Yorumları Dışa Aktar</h2>
+            <form method="post" asp-page-handler="Export">
+                <!-- Video URL -->
+                <label for="videoUrl">YouTube Video Linki:</label>
+                <input type="text" id="videoUrl" asp-for="VideoUrl" placeholder="YouTube Video Linki" required>
+
+                <!-- Tarih Aralığı -->
+                <div>
+                    <label for="startDate">Başlangıç Tarihi:</label>
+                    <input type="date" id="startDate" asp-for="StartDate">
+                </div>
+                <div>
+                    <label for="endDate">Bitiş Tarihi:</label>
+                    <input type="date" id="endDate" asp-for="EndDate">
+                </div>
+
+                <!-- Anahtar Kelime Kullanımı -->
+                <fieldset>
+                    <legend>Anahtar Kelime Kullanılsın mı?</legend>
+                    <div>
+                        <input type="radio" id="useKeywordYes" name="UseKeyword" value="Yes" onchange="toggleKeywordInput()">
+                        <label for="useKeywordYes">Evet</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="useKeywordNo" name="UseKeyword" value="No" checked onchange="toggleKeywordInput()">
+                        <label for="useKeywordNo">Hayır</label>
+                    </div>
+                </fieldset>
+
+                <!-- Anahtar Kelime Textbox'ı -->
+                <div id="keywordInputDiv" style="display: none;">
+                    <label for="keyword">Anahtar Kelime:</label>
+                    <input type="text" id="keyword" asp-for="Keyword" placeholder="Örnek: 'Harika'">
+                </div>
+
+                <!-- İndirme Sütunları -->
+                <fieldset>
+                    <legend>Hangi Sütunlar İndirilsin?</legend>
+                    <div>
+                        <input type="checkbox" id="includeName" asp-for="IncludeName">
+                        <label for="includeName">Kullanıcı Adı</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="includeComment" asp-for="IncludeComment" checked>
+                        <label for="includeComment">Yorum</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="includeLikes" asp-for="IncludeLikes">
+                        <label for="includeLikes">Beğeni Sayısı</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="includeDate" asp-for="IncludeDate">
+                        <label for="includeDate">Tarih</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="includeCommentId" asp-for="IncludeCommentId">
+                        <label for="includeCommentId">Yorum ID</label>
+                    </div>
+                </fieldset>
+
+
+                <!-- İndirme Butonu -->
+                <button type="submit">Yorumları Dışa Aktar ve İndir</button>
+
+            </form>
+        </section>
+    </main>
+</body>
+</html>

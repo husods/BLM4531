@@ -1,4 +1,41 @@
 ﻿@page
 @model YoutubeCommentAnalysis.Pages.LoginModel
 @{
+    ViewData["Title"] = "YouTube Yorum Analiz - Giriş";
 }
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/sites.css">
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <main>
+        <section id="login">
+            <h2>Kullanıcı Girişi</h2>
+            <form method="post">
+                <input type="email" asp-for="Email" placeholder="E-posta" required>
+                <input type="password" asp-for="Password" placeholder="Şifre" required>
+                <button type="submit">Giriş Yap</button>
+            </form>
+
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div style="color: red; margin-top: 10px;">
+                    @Model.ErrorMessage
+                </div>
+            }
+
+            <div id="register-link" style="margin-top: 20px;">
+                <p>
+                    Hesabınız yok mu?
+                    <a asp-page="/Register" style="color: #007BFF; text-decoration: none;">Kayıt Olun</a>
+                </p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

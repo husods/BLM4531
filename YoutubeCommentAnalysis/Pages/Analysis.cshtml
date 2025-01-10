@@ -1,4 +1,119 @@
 ﻿@page
 @model YoutubeCommentAnalysis.Pages.AnalysisModel
+@using Newtonsoft.Json
 @{
+    ViewData["Title"] = "Yorum Analizi";
+}
+
+<h2>Yorum Analizi</h2>
+
+<!-- Form: Kullanıcıdan YouTube Video URL'si almak için -->
+<div id="analysis">
+    <form method="post">
+        <label for="videoUrl">YouTube Video URL'si:</label>
+        <input type="text" id="videoUrl" name="VideoUrl" placeholder="Video URL'si" required />
+        <button type="submit">Yorumları Analiz Et</button>
+    </form>
+</div>
+
+<!-- Grafikler: Form gönderildikten sonra gösterilecek -->
+@if (Model.HasData)
+{
+    <div id="charts">
+        <!-- 1. Yorum Başına Karakter Sayısı Grafiği -->
+        <h3>Yorum Başına Karakter Sayısı</h3>
+        <canvas id="characterChart" style="width: 100%; height: 400px;"></canvas>
+
+        <!-- 2. Kelime Sıklık Grafiği -->
+        <h3>Kelime Sıklık Grafiği</h3>
+        <canvas id="wordFrequencyChart" style="width: 100%; height: 400px;"></canvas>
+
+        <!-- 3. Yorumların Zamansal Dağılımı -->
+        <h3>Yorumların Zamansal Dağılımı</h3>
+        <canvas id="temporalChart" style="width: 100%; height: 400px;"></canvas>
+    </div>
+}
+
+@section Scripts {
+    <!-- Gerekli kütüphaneleri dahil et -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    @if (Model.HasData)
+    {
+        <script>
+            // Backend'den gelen verileri JavaScript değişkenlerine aktar
+            var characterData = @Html.Raw(JsonConvert.SerializeObject(Model.CharacterDistribution));
+            var wordFrequency = @Html.Raw(JsonConvert.SerializeObject(Model.WordFrequency));
+            var temporalData = @Html.Raw(JsonConvert.SerializeObject(Model.TemporalDistribution));
+
+            // 1. Yorum Başına Karakter Sayısı Grafiği
+            new Chart(document.getElementById('characterChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: characterData.Labels,
+                    datasets: [{
+                        label: 'Yorum Sayısı',
+                        data: characterData.Data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: true, position: 'top' }
+                    },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+
+            // 2. Kelime Sıklık Grafiği
+            new Chart(document.getElementById('wordFrequencyChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: wordFrequency.map(d => d.Word), // Kelimeler
+                    datasets: [{
+                        label: 'Frekans',
+                        data: wordFrequency.map(d => d.Frequency), // Frekanslar
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { ticks: { autoSkip: false, maxRotation: 90, minRotation: 45 } },
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+
+            // 3. Yorumların Zamansal Dağılımı Grafiği
+            new Chart(document.getElementById('temporalChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: temporalData.Labels,
+                    datasets: [{
+                        label: 'Yorum Sayısı',
+                        data: temporalData.Data,
+                        fill: false,
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: true, position: 'top' }
+                    },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+        </script>
+    }
 }
