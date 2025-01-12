@@ -19,7 +19,7 @@ namespace YoutubeCommentAnalysis.UsersData
         public int Id { get; set; }
         public required string Email { get; set; }
         public required string Password { get; set; }
-        public DateTime DateCreated { get; set; } = DateTime.UtcNow; // Tarih eklendi
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
     }
 
 }

@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using YoutubeCommentAnalysis.UsersData;
 using System.Linq;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace YoutubeCommentAnalysis.Pages
 {
@@ -24,7 +27,7 @@ namespace YoutubeCommentAnalysis.Pages
 
         public void OnGet()
         {
-            // Giriş sayfası yüklendiğinde yapılacak işlemler (şu an boş)
+            // Giriş sayfası yüklendiğinde yapılacak işlemler
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -46,12 +49,25 @@ namespace YoutubeCommentAnalysis.Pages
                 return Page();
             }
 
-            // Başarılı giriş, kullanıcıyı Session'a kaydetme
-            HttpContext.Session.SetString("UserEmail", user.Email); // Kullanıcı e-posta adresini oturuma kaydediyoruz
-            HttpContext.Session.SetInt32("UserId", user.Id); // Kullanıcı ID'sini oturuma kaydediyoruz
+            // Kullanıcı bilgilerini Claims olarak ayarla
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Email),
+                new Claim("UserId", user.Id.ToString()), // Kullanıcı ID'si
+                new Claim(ClaimTypes.Email, user.Email) // E-posta
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // Oturumu oluştur
+            await HttpContext.SignInAsync("MyCookieAuth", new ClaimsPrincipal(claimsIdentity), new AuthenticationProperties
+            {
+                IsPersistent = true, // Kalıcı oturum
+                ExpiresUtc = DateTime.UtcNow.AddMinutes(30) // Oturum süresi
+            });
 
             // Başarılı giriş, kullanıcıyı yönlendirme
-            return RedirectToPage("/Index"); // Ana sayfaya yönlendir
+            return RedirectToPage("/Index");
         }
     }
 }

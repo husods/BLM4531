@@ -1,18 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace YoutubeCommentAnalysis.Pages
 {
     public class LogoutModel : PageModel
     {
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
-            // Oturumdan çıkmak: Kullanıcı bilgilerini session'dan kaldırıyoruz
-            HttpContext.Session.Remove("UserEmail");
-            HttpContext.Session.Remove("UserId");
-
-            // Kullanıcıyı ana sayfaya yönlendiriyoruz
-            return RedirectToPage("/Index");
+            // Oturumu sonlandır
+            await HttpContext.SignOutAsync("MyCookieAuth");
+            return RedirectToPage("/Login");
         }
     }
 }

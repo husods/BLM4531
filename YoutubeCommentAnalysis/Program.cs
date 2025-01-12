@@ -16,25 +16,25 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<UsersDataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// YouTube API Servisini DI Container'a ekliyoruz
+// YouTube API Servisini DI Container'a ekleme
 builder.Services.AddScoped<IYoutubeService>(provider =>
 {
-    var apiKey = builder.Configuration["YoutubeApi:ApiKey"]; // appsettings.json'dan API anahtarını al
-    return new GetYoutubeComments(apiKey); // IYoutubeService olarak döndürüyoruz
+    var apiKey = builder.Configuration["YoutubeApi:ApiKey"]; // appsettings.json'dan API anahtarını alma
+    return new GetYoutubeComments(apiKey); // IYoutubeService olarak döndürülüyor
 });
 
-// Add services to the container
+// Servisleri container'e ekleme
 builder.Services.AddRazorPages();
 
-// Session desteğini ekle
+// Session desteğini ekleme
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Oturumun süresi
-    options.Cookie.HttpOnly = true; // Güvenlik için sadece HTTP üzerinden erişilebilir
-    options.Cookie.IsEssential = true; // GDPR uyumu için gerekli
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true; 
+    options.Cookie.IsEssential = true; 
 });
 
-// Kimlik doğrulama ve yetkilendirme için gerekli yapılandırmaları ekle
+// Kimlik doğrulama ve yetkilendirme için gerekli yapılandırmalar
 builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options =>
 {
     options.LoginPath = "/Login"; // Yetkisiz erişimlerde yönlendirme yapılacak sayfa
@@ -43,7 +43,7 @@ builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", opt
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
+// HTTP request pipeline'ı yapılandırma
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -55,10 +55,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// Session middleware'ini ekle
+// Session middleware'ini ekleme
 app.UseSession();
 
-// Kimlik doğrulama ve yetkilendirme middleware'ini ekle
+// Kimlik doğrulama ve yetkilendirme middleware'ini ekleme
 app.UseAuthentication();
 app.UseAuthorization();
 

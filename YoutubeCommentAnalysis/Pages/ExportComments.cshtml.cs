@@ -70,18 +70,18 @@ namespace YoutubeCommentAnalysis.Pages
 
             try
             {
-                // Extract video ID from the URL
+                // Video ID dışa aktarma
                 var videoId = ExtractVideoId(VideoUrl);
                 var comments = await _youtubeService.GetCommentsAsync(videoId, StartDate, EndDate, Keyword);
 
-                // Create file path
+                // Dosya yolu oluşturma
                 var filePath = Path.Combine(Path.GetTempPath(), "comments.csv");
 
-                // Write selected columns to CSV
+                // Seçili sütünları CSV dosyasına yazdırma
                 await WriteCommentsToCsvAsync(comments, filePath);
                 CsvFilePath = filePath;
 
-                // Start file download
+                // İndirmeyi başlat
                 return File(System.IO.File.ReadAllBytes(CsvFilePath), "application/csv", "comments.csv");
             }
             catch (Exception ex)
@@ -93,7 +93,7 @@ namespace YoutubeCommentAnalysis.Pages
 
         private string ExtractVideoId(string videoUrl)
         {
-            // Extract videoId from the YouTube URL (you can customize this regex if necessary)
+            // YouTube URL'den video ID'yi dışa aktarma
             var regex = new System.Text.RegularExpressions.Regex(@"(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|\S*\?v=)|(?:youtu\.be\/))([a-zA-Z0-9_-]+)");
             var match = regex.Match(videoUrl);
             return match.Success ? match.Groups[1].Value : throw new Exception("Geçerli bir YouTube URL'si girin.");
@@ -122,7 +122,7 @@ namespace YoutubeCommentAnalysis.Pages
 
             using (var writer = new StreamWriter(filePath))
             {
-                // Write CSV header based on selected columns
+                // Seçilen sütunlara göre CSV başlığını yazdır
                 List<string> headers = new List<string>();
 
                 if (IncludeCommentId) headers.Add("CommentId");
@@ -131,10 +131,10 @@ namespace YoutubeCommentAnalysis.Pages
                 if (IncludeLikes) headers.Add("Likes");
                 if (IncludeDate) headers.Add("PublishedAt");
 
-                // Write header row
+                // Başlık satırını yazdır
                 writer.WriteLine(string.Join(",", headers));
 
-                // Write data rows based on selected columns
+                // Seçilen sütunlara göre satırları yazdırma
                 foreach (var comment in comments)
                 {
                     List<string> row = new List<string>();
@@ -148,7 +148,7 @@ namespace YoutubeCommentAnalysis.Pages
                     if (IncludeLikes) row.Add(EscapeCsvField(HttpUtility.HtmlDecode(comment.Likes.ToString())));
                     if (IncludeDate) row.Add(EscapeCsvField(HttpUtility.HtmlDecode(comment.PublishedAt.ToString("yyyy-MM-dd"))));
 
-                    // Write the row
+                    // Satırı yazdır
                     writer.WriteLine(string.Join(",", row));
                 }
             }

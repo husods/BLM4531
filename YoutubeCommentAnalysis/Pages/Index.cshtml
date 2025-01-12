@@ -22,7 +22,16 @@
                 Gain valuable insights by deeply analyzing the comments on your YouTube videos.
                 With our user-friendly tools, easily discover your audience's interests, thoughts, and comment trends.
             </p>
-            <button onclick="window.location.href='@Url.Page("/Login")'" class="btn btn-primary btn-lg mt-3">Get Started by Logging In</button>
+
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                <p class="text-success mt-3" color="red">You are already logged in. Start exploring now!</p>
+            }
+            else
+            {
+                <button onclick="window.location.href='@Url.Page("/Login")'" class="btn btn-primary btn-lg mt-3">Get Started by Logging In</button>
+            }
+
         </section>
     </main>
 </body>

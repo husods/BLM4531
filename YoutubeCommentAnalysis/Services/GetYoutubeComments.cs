@@ -64,7 +64,7 @@ namespace YoutubeCommentAnalysis.Services
                         CommentId = item.Id,
                         AuthorName = commentSnippet.AuthorDisplayName,
                         Text = commentSnippet.TextDisplay,
-                        Likes = Convert.ToInt32(commentSnippet.LikeCount ?? 0), // long'dan int'e dönüşüm
+                        Likes = Convert.ToInt32(commentSnippet.LikeCount ?? 0),
                         PublishedAt = publishedAt
                     });
                 }

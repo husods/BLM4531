@@ -53,13 +53,13 @@ namespace YoutubeCommentAnalysis.Pages
             var newUser = new User
             {
                 Email = Email,
-                Password = Password // Şifreleme için daha sonra güncellenecek
+                Password = Password
             };
 
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("/Login"); // Kayıt başarılı, giriş sayfasına yönlendir
+            return RedirectToPage("/Login");
         }
     }
 }
